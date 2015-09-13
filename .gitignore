@@ -1,0 +1,100 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+
+# Ignore all the executables.
+# No way to do this without listing them all here,
+# or putting them somewhere else (yuck)
+# or giving them extensions (yuck)
+#
+# Generated with
+# find . -executable -type f >>.gitignore
+#
+./fork/hhh2
+./fork/runner
+./fork/child
+./fork/child2
+./fork/family
+./fork/hhh
+./fork/onefork
+./threads/keyfork
+./threads/prime
+./threads/way
+./threads/order_in
+./threads/order_out
+./threads/readwrite
+./threads/yell
+./threads/noway
+./threads/how_many_cpus
+./threads/philosophers
+./threads/chase
+./threads/old_stuff/prime2
+./threads/old_stuff/prime1
+./network/iecho
+./network/gethost
+./network/ilisten
+./network/gethost-fancy
+./network/ilisten2
+./network/qotd
+./network/ispeak
+./network/time37
+./memory/pagesize
+./memory/breakstack
+./memory/pointers
+./memory/probe
+./memory/malloc_test
+./memory/tlb_demo1
+./memory/pagefaults
+./memory/malloc_simple
+./memory/sizes
+./memory/churn2
+./memory/tlb_demo2
+./memory/churn
+./memory/mmap_test
+./memory/stack_pointer
+./file/mapfile
+./file/lseek-question
+./file/socker
+./security/cookie
+./security/encode
+./basic/pow2
+./basic/openclose
+./basic/envdemo
+./basic/stderrdemo
+./basic/stderrdemo2
+./basic/pow
+./basic/hello
+./ipc/pipe_demo
+./ipc/prompt_cin
+./ipc/self_pipe
+./ipc/sig_demo
+./ipc/prompt_fgets
