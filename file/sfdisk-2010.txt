@@ -1,0 +1,13 @@
+root@turing:~# sfdisk -l /dev/sda
+
+Disk /dev/sda: 60801 cylinders, 255 heads, 63 sectors/track
+Warning: extended partition does not start at a cylinder boundary.
+DOS and Linux will interpret the contents differently.
+Units = cylinders of 8225280 bytes, blocks of 1024 bytes, counting from 0
+
+   Device Boot Start     End   #cyls    #blocks   Id  System
+/dev/sda1   *      0+  58335-  58336- 468581376   83  Linux
+/dev/sda2      58335+  60801-   2466-  19803137    5  Extended
+/dev/sda3          0       -       0          0    0  Empty
+/dev/sda4          0       -       0          0    0  Empty
+/dev/sda5      58335+  60801-   2466-  19803136   82  Linux swap / Solaris
