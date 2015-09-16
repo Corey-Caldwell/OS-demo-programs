@@ -2,7 +2,7 @@
  * sig_demo.C
  *   Ignore ^C, catch and respond to ^| and USR1 signal.
  *
- * Bryan Clair, 2002
+ * Bryan Clair, 2002-2015
  */
 
 #include <iostream>
@@ -32,8 +32,6 @@ void handle_signal(int the_sig)
 
 main()
 {
-  int i;
-
   // set ^C to be ignored
   signal(SIGINT,SIG_IGN);
 
@@ -42,8 +40,11 @@ main()
   signal(SIGUSR1,handle_signal);
 
   // count for a while
+  int i, timeleft;
   for (i=0; ;i++) {
     cout << i << endl;
-    sleep(1);
+    timeleft = sleep(1);
+    if (timeleft != 0)
+      cout << "woke with " << timeleft << " second left" << endl;
   }
 }
