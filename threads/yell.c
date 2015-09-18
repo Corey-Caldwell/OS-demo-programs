@@ -1,9 +1,9 @@
 /*
  * yell.c
  *  Create four threads which yell various strings.
+ *  Bryan Clair 2006-2015
  */
 
-#define _REENTRANT
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -13,8 +13,8 @@ void *yell(void *word)
 {
   int i;
 
-  for (i=0; i<4; i++) {
-    usleep(100000);
+  for (i=0; i<5; i++) {
+    sleep(1);
     printf("%s\n",(char *) word);
   }
 }
