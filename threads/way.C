@@ -1,17 +1,18 @@
 /*
-  way.c
+  way.C
 
   Eliminating a race condition with mutual exclusion.
 
   Bryan Clair
-  2001-13
+  2001-15
 */
 
 #include <iostream>
 #include <pthread.h>
+#include <unistd.h>
 using namespace std;
 
-volatile int a;   // tell compiler not to cache a in a register
+int a;
 
 pthread_mutex_t alock;    // Global mutex used to lock access to a
 
