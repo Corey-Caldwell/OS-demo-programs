@@ -2,7 +2,7 @@
  * chase
  *    A chase game.  User runs from menacing asterisk.
  * 
- * Bryan Clair 2002
+ * Bryan Clair 2002-2015
  */
 
 #include <iostream>
@@ -12,7 +12,7 @@
 using namespace std;
 
 // Globals hold players current position
-volatile int x_player, y_player;
+int x_player, y_player;
 
 // Forward declarations
 void *player(void *);
