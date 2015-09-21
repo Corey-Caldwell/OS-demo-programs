@@ -4,7 +4,7 @@
   fork() while a second thread is waiting on keyboard input.
 
   Bryan Clair
-  2008-2015
+  Sep. 2008
 */
 
 #include <iostream>
@@ -17,23 +17,25 @@ void *readline(void *v)
 {
   char line[256];
   cout << "Type: " << endl;
+  
   if (!cin.getline(line,255)) {
     cerr << "error!" << endl;
   } else {
     cout << line << endl;
   }
+
   cout << "exiting" << endl;
 }
 
 main()
 {
-  pthread_t tone, ttwo;
 
-  /* make new threads */
-  pthread_create(&tone,NULL,readline,NULL);
-  pthread_create(&ttwo,NULL,readline,NULL);
+  /* make new thread */
+  pthread_t id;
+  pthread_create(&id,NULL,readline,NULL);
 
+  sleep(1);
   fork();
 
-  sleep(30);
+  pthread_exit(NULL);
 }  
