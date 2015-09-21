@@ -4,12 +4,13 @@
   fork() while a second thread is waiting on keyboard input.
 
   Bryan Clair
-  Sep. 2008
+  2008-2015
 */
 
 #include <iostream>
 #include <string.h>
 #include <pthread.h>
+#include <unistd.h>
 using namespace std;
 
 void *readline(void *v)
