@@ -9,27 +9,28 @@
 
 using namespace std;
 
-class Object;
-
-class PCQueue {
+template<class Object>
+PCqueue {
 public:
-  PCQueue();
-  void enqueue(Object *it);
-  Object *dequeue();
+  PCqueue();
+  void enqueue(Object);
+  Object dequeue();
 private:
-  queue<Object *> q;
+  queue<Object> q;
   pthread_mutex_t lock; // protects q
   sem_t Qsize;
 };
 
-PCQueue::PCQueue()
+template<class Object>
+PCqueue<Object>::PCqueue()
 {
   pthread_mutex_init(&lock,NULL);
   sem_init(&Qsize,0,0);
 }
 
 // Add an Object to the queue
-void PCQueue::enqueue(Object *it)
+template<class Object>
+void PCqueue::enqueue(Object it)
 {
   pthread_mutex_lock(&lock);
 
@@ -41,9 +42,10 @@ void PCQueue::enqueue(Object *it)
 }
 
 // Sleep until there is an Object on the queue, then return it.
-Object *PCQueue::dequeue()
+template<class Object>
+Object PCqueue::dequeue()
 {
-  Object *it;
+  Object it;
 
   sem_wait(&Qsize);
 
