@@ -7,30 +7,27 @@
 #include <semaphore.h>
 #include <assert.h>
 
-using namespace std;
+class Object;
 
-template<class Object>
-PCqueue {
+class PCQueue {
 public:
-  PCqueue();
-  void enqueue(Object);
-  Object dequeue();
+  PCQueue();
+  void enqueue(Object *it);
+  Object *dequeue();
 private:
-  queue<Object> q;
+  std::queue<Object *> q;
   pthread_mutex_t lock; // protects q
   sem_t Qsize;
 };
 
-template<class Object>
-PCqueue<Object>::PCqueue()
+PCQueue::PCQueue()
 {
   pthread_mutex_init(&lock,NULL);
   sem_init(&Qsize,0,0);
 }
 
 // Add an Object to the queue
-template<class Object>
-void PCqueue::enqueue(Object it)
+void PCQueue::enqueue(Object *it)
 {
   pthread_mutex_lock(&lock);
 
@@ -42,10 +39,9 @@ void PCqueue::enqueue(Object it)
 }
 
 // Sleep until there is an Object on the queue, then return it.
-template<class Object>
-Object PCqueue::dequeue()
+Object *PCQueue::dequeue()
 {
-  Object it;
+  Object *it;
 
   sem_wait(&Qsize);
 
