@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "rwlock.h"
 
 using namespace std;
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
   int nw = atoi(argv[2]);
 
   srandom(time(0));  // seed random number generator
+  cout << unitbuf;   // set cout to flush without newlines
 
   int i;
   pthread_t p;
@@ -65,10 +67,13 @@ void *reader(void *v)
     // get RW_Lock as a reader
     lock.Reader_Lock();
   
-    // "read" for up to 3 seconds
-    cout << "R " << id << " reading.\n";
-    sleep(random()%3 + 1);
-    cout << "R " << id << " done.\n";
+    // "read" for up to 4 seconds
+    cout << "(R" << id;
+    for (int i=0; i <= random()%4; i++) {
+      cout << ".";
+      sleep(1);
+    }
+    cout << ")";
 
     // release lock
     lock.Reader_Unlock();
@@ -90,10 +95,13 @@ void *writer(void *v)
     // get RW_Lock as a reader
     lock.Writer_Lock();
   
-    // "write" for up to 3 seconds
-    cout << "W " << id << " writing.\n";
-    sleep(random()%3 + 1);
-    cout << "W " << id << " done.\n";
+    // "write" for up to 4 seconds
+    cout << "\n(W" << id;
+    for (int i=0; i <= random()%4; i++) {
+      cout << ".";
+      sleep(1);
+    }
+    cout << ")";
 
     // release lock
     lock.Writer_Unlock();
