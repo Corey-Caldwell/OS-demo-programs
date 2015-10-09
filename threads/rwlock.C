@@ -2,9 +2,10 @@
  * class RW_Lock provides a readers/writers lock that allows multiple
  * readers or one writer.
  *
- * If writers are waiting to work, no new readers are allowed to get
- * the lock.
+ * "Writers priority": If writers are waiting to work, no new readers
+ * are allowed to get the lock. Readers may starve.
  */
+
 #include <pthread.h>
 #include "rwlock.h"
 
@@ -20,20 +21,24 @@ RW_Lock::RW_Lock(void)
 void RW_Lock::Reader_Lock(void)
 {
   pthread_mutex_lock(&lock);
+
   while (num_writers > 0) {
     pthread_cond_wait(&no_writers,&lock);
   }
   num_readers++;
+
   pthread_mutex_unlock(&lock);
 }
 
 void RW_Lock::Reader_Unlock(void)
 {
   pthread_mutex_lock(&lock);
+
   num_readers--;
   if (num_readers == 0) {
     pthread_cond_signal(&all_clear);     // wake a writer
   }
+
   pthread_mutex_unlock(&lock);
 }
 
@@ -47,6 +52,7 @@ void RW_Lock::Writer_Lock(void)
     pthread_cond_wait(&all_clear,&lock);
   }
   active_writer = true;
+
   pthread_mutex_unlock(&lock);
 }
 

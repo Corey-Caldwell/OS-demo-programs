@@ -1,14 +1,9 @@
 /*
- * rwlock.h
- *    defines class RW_Lock
- *    readers/writers lock that allows multiple readers or one writer.
+ * class RW_Lock provides a readers/writers lock that allows multiple
+ * readers or one writer.
  *
- * If writers are waiting to work, no new readers are allowed to get
- * the lock.
- *
- * Bryan Clair
- * 2003
- *
+ * "Writers priority": If writers are waiting to work, no new readers
+ * are allowed to get the lock. Readers may starve.
  */
 #ifndef RWLOCK_H
 #define RWLOCK_H
