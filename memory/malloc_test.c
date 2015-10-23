@@ -10,15 +10,19 @@
 main()
 {
   void *mem = NULL;
-  long size;
+  unsigned long size;
+  char line[256];
 
   do {
-    printf("  mem     = %p\n",mem);
-    printf("  sbrk(0) = %p\n",sbrk(0));
+    printf("\n  sbrk(0) = %p\n",sbrk(0));
+
     printf("How much memory? ");
-    scanf("%ld",&size);
+    fgets(line,255,stdin);
+    size = strtoul(line,NULL,0);
 
     mem = malloc(size);
+    printf("  mem     = %p\n",mem);
+
   } while (mem != NULL);
 
   perror("malloc");
