@@ -21,5 +21,5 @@ main()
     mem = malloc(size);
   } while (mem != NULL);
 
-  printf("Out of memory.\n");
+  perror("malloc");
 }
