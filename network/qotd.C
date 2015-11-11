@@ -24,7 +24,7 @@ using namespace std;
 
 void fail(const char *str) { perror(str); exit(1); }
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   // check arguments
   if (argc != 2) {

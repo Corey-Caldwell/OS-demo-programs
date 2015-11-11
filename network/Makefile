@@ -1,4 +1,4 @@
-targets = gethost ispeak ilisten iecho ilisten2 time37 qotd
+targets = gethost gethost-fancy ispeak ilisten iecho ilisten2 time37 qotd
 
 .PHONY: all
 all: $(targets)

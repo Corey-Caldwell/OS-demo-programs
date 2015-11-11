@@ -13,7 +13,7 @@
 #include <stdlib.h>
 using namespace std;
 
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   // check arguments
   if (argc != 2) {
