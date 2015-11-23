@@ -20,6 +20,11 @@ using namespace std;
 
 #define BUFSIZE 512
 
+void sigIgnoreHandler(int sig_num)
+{
+  signal(SIGPIPE,sigIgnoreHandler);
+}
+
 void fail(const char *str) { perror(str); exit(1); }
 
 //
@@ -33,6 +38,8 @@ int main(int argc, char *argv[])
     cerr << "usage: ispeak hostname port" << endl;
     exit(1);
   }
+  
+  signal(SIGPIPE,sigIgnoreHandler);
 
   // look up host information - specify hostname and port service
   int err;
